@@ -11,9 +11,9 @@
   $_SESSION['search'] = false; 
 
   //Calling Required Files
-  require_once('/home/pankil/git/rabbitmqphp_example/path.inc');
-  require_once('/home/pankil/git/rabbitmqphp_example/get_host_info.inc');
-  require_once('/home/pankil/git/rabbitmqphp_example/rabbitMQLib.inc');
+  require_once('path.inc');
+  require_once('get_host_info.inc');
+  require_once('rabbitMQLib.inc');
 
   if (isset($argv[1])) { $msg = $argv[1]; }
   else { $msg = "You are on user profile page"; }
@@ -35,7 +35,7 @@
       $request['username']  = $username;
       $request['message']   = $msg; 
     
-      $client1 = new rabbitMQClient("/home/pankil/git/rabbitmqphp_example/testRabbitMQ.ini","testServer");
+      $client1 = new rabbitMQClient("testRabbitMQ.ini","testServer");
       $response1 = $client1->send_request($request);
       $_SESSION['userFullname'] = $response1;
       
@@ -188,7 +188,7 @@ body
     <font size = "6">Please enter the food name below:&ensp;</font>
     <table>
       <tr>
-      <td><input type=text placeholder="Food Name" name="item" id = "item" autocomplete = "off"></td>
+      <td><input type=text placeholder="Food Name" name="item" id = "item" autocomplete = "off" required></td>
       <td><input type="submit" value="Click here to search for an item" style="font-size:14pt"></td>
       <td><p style = "color:white;" span id = "warning1" ></p></span></td>
       </tr>
@@ -198,8 +198,6 @@ body
   <br><button id="b1" type="button" onclick="location.href='userProfile.php'">Show My Profile Page</button>
   
   <br><button id="b2" type="button" onclick="location.href='displayfav.php'">Show My saved food</button>
-
-  <br><button id="b4" type="button" onclick="location.href='suggest.php'">Surprise Me</button>
 
   <br><button id="b3" type="button" onclick="location.href='login.html'">Logout</button>
 

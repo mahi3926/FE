@@ -15,15 +15,13 @@
    $calories = $_SESSION['calories'];
 
    //Calling Required Files
-   require_once('/home/pankil/git/rabbitmqphp_example/path.inc');
-   require_once('/home/pankil/git/rabbitmqphp_example/get_host_info.inc');
-   require_once('/home/pankil/git/rabbitmqphp_example/rabbitMQLib.inc');
+   require_once('path.inc');
+   require_once('get_host_info.inc');
+   require_once('rabbitMQLib.inc');
 
    if (isset($argv[1])) { $msg = $argv[1]; }
    else { $msg = "You are on show diet plan page"; }
    
-    
-
    //Sending data to server
    $request = array();
    $request['type'] = "showMealPlan";
@@ -33,9 +31,8 @@
    $request['message']   = $msg;
    
    //Geting responce from server
-   $client = new rabbitMQClient("/home/pankil/git/rabbitmqphp_example/testRabbitMQ.ini","testServer");
+   $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
    $response = $client->send_request($request);
-   
 
    //Display message to user   
    $welcome = '<font size = "10" color = "coloring"> Your Saved diet plan list for';

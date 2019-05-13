@@ -11,11 +11,11 @@ $_SESSION['userLogin'] = true;
 $_SESSION['display'] = true;
 $username = $_SESSION["username"];
 
-require_once('/home/pankil/git/rabbitmqphp_example/path.inc');
-require_once('/home/pankil/git/rabbitmqphp_example/get_host_info.inc');
-require_once('/home/pankil/git/rabbitmqphp_example/rabbitMQLib.inc');
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
-$client = new rabbitMQClient("/home/pankil/git/rabbitmqphp_example/testRabbitMQ.ini","testServer");
+$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 
 if (isset($argv[1])){ $msg = $argv[1]; }
